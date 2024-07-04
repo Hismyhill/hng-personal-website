@@ -37,7 +37,7 @@ function updateTime() {
   const currentMonth = monthOfYear[month];
 
   const day = now.getUTCDay();
-  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thursday", "Fri", "Sat"];
+  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const currentDay = daysOfWeek[day];
   const currentDate = `${currentDay}, ${day} ${currentMonth} ${year}`;
 
