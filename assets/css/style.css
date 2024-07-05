@@ -817,6 +817,18 @@ main {
   filter: grayscale(0);
 }
 
+.task-link {
+  display: flex;
+  padding-top: 20px;
+  padding: 20px 50px 0px 50px;
+  justify-content: space-between;
+}
+
+.task-link a {
+  font-size: 15px;
+  color: var(--orange-yellow-crayola);
+}
+
 /*-----------------------------------*\
   #VISION
 \*-----------------------------------*/
@@ -1444,9 +1456,6 @@ main {
   article {
     width: auto;
     /* height: auto; */
-  }
-  .sidebar {
-    /* width: 40%; */
   }
 
   article {
