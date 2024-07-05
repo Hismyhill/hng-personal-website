@@ -820,7 +820,7 @@ main {
 .task-link {
   display: flex;
   padding-top: 20px;
-  padding: 20px 50px 0px 50px;
+  padding-top: 20px;
   justify-content: space-between;
 }
 
@@ -1081,6 +1081,10 @@ main {
     -webkit-line-clamp: 2;
   }
 
+  .task-link {
+    padding: 20px 30px 0px 30px;
+  }
+
   /* testimonials modal */
 
   .modal-container {
@@ -1291,6 +1295,11 @@ main {
   .project-list,
   .blog-posts-list {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .task-link {
+    padding: 20px 50px 0px 50px;
+    justify-content: space-between;
   }
 
   /**
