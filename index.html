@@ -47,14 +47,40 @@
             <img
               src="./assets/images/Ismaeel-1.jpg"
               alt="Ismaeel Owolabi"
-              data-testid="slackProfilePicture"
+              data-testid="profilePicture"
             />
           </figure>
 
           <div class="info-content">
-            <h1 class="name" title="Ismaeel Owolabi">Ismaeel Owolabi</h1>
+            <h1 class="name" title="Ismaeel Owolabi" data-testid="fullName">Ismaeel Owolabi</h1>
 
-            <p class="title">Frontend developer</p>
+            <p class="title" data-testid="jobTitle">Frontend developer</p>
+            
+            <ul class="social-list" data-testid="socialLinks">
+              <li class="social-item">
+                <a href="https://linkedin.com/ismaeel-owolabi" class="social-link">
+                  <div class="icon-box">
+                    <ion-icon name="logo-linkedin"></ion-icon>
+                  </div>
+                </a>
+              </li>
+
+              <li class="social-item">
+                <a href="https://x.com/hismyhill_" class="social-link">
+                  <div class="icon-box">
+                    <ion-icon name="logo-twitter"></ion-icon>
+                  </div>
+                </a>
+              </li>
+
+              <li class="social-item">
+                <a href="https://github.com/hismyhill" class="social-link">
+                  <div class="icon-box">
+                    <ion-icon name="logo-github"></ion-icon>
+                  </div> 
+                </a>
+              </li>
+            </ul>
           </div>
 
           <button class="info_more-btn" data-sidebar-btn>
@@ -70,13 +96,13 @@
           <ul class="contacts-list">
             <li class="contact-item">
               <div class="icon-box">
-                <ion-icon name="person-outline"></ion-icon>
+                <ion-icon name="location-outline"></ion-icon>
               </div>
 
               <div class="contact-info">
-                <p class="contact-title">Slack name</p>
+                <p class="contact-title">Location</p>
 
-                <span data-testid="slackDisplayName">Hismyhill</span>
+                <span data-testid="currenTLocation">Osogbo, Nigeria</span>
               </div>
             </li>
 
@@ -86,12 +112,12 @@
               </div>
 
               <div class="contact-info">
-                <p class="contact-title">Slack email</p>
+                <p class="contact-title">Email Address</p>
 
                 <a
                   href="mailto:owolabismaeel@gmailcom"
                   class="contact-link"
-                  data-testid="owolabismaeel@gmail.com"
+                  data-testid="emailAddress"
                   >owolabismaeel@gmailcom</a
                 >
               </div>
@@ -121,10 +147,10 @@
                 
                 <div class="date-time">
                   <span class="current-day" data-testid="currentDay">
-                  Mon, June 23, 1982</span>
+                 </span>
                   <span 
                   class="current-time" data-testid="currentTimeUTC"
-                  >12:00pm</span>
+                  ></span>
                 </div>
 
              
@@ -134,7 +160,7 @@
 
           <div class="separator"></div>
 
-          <ul class="social-list">
+           <ul class="social-list">
             <li class="social-item">
               <a href="#" class="social-link">
                 <ion-icon name="logo-facebook"></ion-icon>
@@ -149,7 +175,7 @@
 
             <li class="social-item">
               <a href="#" class="social-link">
-                <ion-icon name="logo-instagram"></ion-icon>
+                <ion-icon name="logo-linkedin"></ion-icon>
               </a>
             </li>
           </ul>
