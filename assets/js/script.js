@@ -44,12 +44,16 @@ function updateTime() {
 
   const currentDate = `${currentDay}, ${date} ${currentMonth} ${year}`;
 
-  const hours = now.getUTCHours().toString().padStart(2, "0");
+  let hours = now.getUTCHours() + 1;
   const minutes = now.getUTCMinutes().toString().padStart(2, "0");
-  const time = `${Number(hours) + 1}:${minutes} GMT`;
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  const strTime = hours.toString().padStart(2, '0') + ' : ' + minutes + ' ' + ampm;
+  const time = strTime;
 
-  const dayEl = document.querySelector("[data-testid=currentDay]");
-  const timeEl = document.querySelector("[data-testid=currentTimeUTC]");
+  const dayEl = document.querySelector("[data-testid=test-user-date]");
+  const timeEl = document.querySelector("[data-testid=test-user-time]");
 
   dayEl.textContent = currentDate;
   timeEl.textContent = time;
