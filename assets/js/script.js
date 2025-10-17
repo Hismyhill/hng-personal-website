@@ -17,41 +17,20 @@ sidebarBtn.addEventListener("click", function () {
 // Getting the Time
 function updateTime() {
   const now = new Date();
+  const utcMilliseconds = now.getTime();
 
-  const year = now.getUTCFullYear();
-  const month = now.getUTCMonth();
+  // Format date (e.g., "Fri, 23 Aug 2024")
+  const dateOptions = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  };
+  const currentDate = new Intl.DateTimeFormat("en-US", dateOptions).format(now);
 
-  const monthOfYear = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const currentMonth = monthOfYear[month];
-  const day = now.getUTCDay();
-  const date = now.getUTCDate();
-
-  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const currentDay = daysOfWeek[day];
-
-  const currentDate = `${currentDay}, ${date} ${currentMonth} ${year}`;
-
-  let hours = now.getUTCHours() + 1;
-  const minutes = now.getUTCMinutes().toString().padStart(2, "0");
-  const ampm = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  const strTime = hours.toString().padStart(2, '0') + ' : ' + minutes + ' ' + ampm;
-  const time = strTime;
-
+  // Set the time to the current timestamp in milliseconds
+  const time = utcMilliseconds;
   const dayEl = document.querySelector("[data-testid=test-user-date]");
   const timeEl = document.querySelector("[data-testid=test-user-time]");
 
@@ -59,7 +38,7 @@ function updateTime() {
   timeEl.textContent = time;
 }
 
-setInterval(updateTime, 60000);
+setInterval(updateTime, 1); // Update every millisecond for accuracy
 
 updateTime();
 
