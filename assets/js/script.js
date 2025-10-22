@@ -5,14 +5,42 @@ const elementToggleFunc = function (elem) {
   elem.classList.toggle("active");
 };
 
-// sidebar variables
-const sidebar = document.querySelector("[data-sidebar]");
-const sidebarBtn = document.querySelector("[data-sidebar-btn]");
+// Function to fetch and inject the sidebar
+const loadSidebar = async () => {
+  try {
+    const response = await fetch("sidebar.html");
+    const sidebarHTML = await response.text();
+    const sidebarContainer = document.getElementById("sidebar-container");
+    if (sidebarContainer) {
+      sidebarContainer.innerHTML = sidebarHTML;
 
-// sidebar toggle functionality for mobile
-sidebarBtn.addEventListener("click", function () {
-  elementToggleFunc(sidebar);
-});
+      // Re-initialize sidebar functionality after it's loaded
+      const sidebar = document.querySelector("[data-sidebar]");
+      const sidebarBtn = document.querySelector("[data-sidebar-btn]");
+      if (sidebar && sidebarBtn) {
+        sidebarBtn.addEventListener("click", function () {
+          elementToggleFunc(sidebar);
+        });
+      }
+    }
+  } catch (error) {
+    console.error("Error loading sidebar:", error);
+  }
+};
+
+// Function to fetch and inject the navbar
+const loadNavbar = async () => {
+  try {
+    const response = await fetch("navbar.html");
+    const navbarHTML = await response.text();
+    const navbarContainer = document.getElementById("navbar-container");
+    if (navbarContainer) {
+      navbarContainer.innerHTML = navbarHTML;
+    }
+  } catch (error) {
+    console.error("Error loading navbar:", error);
+  }
+};
 
 // Getting the Time
 function updateTime() {
@@ -34,13 +62,11 @@ function updateTime() {
   const dayEl = document.querySelector("[data-testid=test-user-date]");
   const timeEl = document.querySelector("[data-testid=test-user-time]");
 
-  dayEl.textContent = currentDate;
-  timeEl.textContent = time;
+  if (dayEl && timeEl) {
+    dayEl.textContent = currentDate;
+    timeEl.textContent = time;
+  }
 }
-
-setInterval(updateTime, 1); // Update every millisecond for accuracy
-
-updateTime();
 
 // testimonials variables
 const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
@@ -55,29 +81,37 @@ const modalText = document.querySelector("[data-modal-text]");
 
 // modal toggle function
 const testimonialsModalFunc = function () {
-  modalContainer.classList.toggle("active");
-  overlay.classList.toggle("active");
+  if (modalContainer && overlay) {
+    modalContainer.classList.toggle("active");
+    overlay.classList.toggle("active");
+  }
 };
 
 // add click event to all modal items
-for (let i = 0; i < testimonialsItem.length; i++) {
-  testimonialsItem[i].addEventListener("click", function () {
-    modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
-    modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-    modalTitle.innerHTML = this.querySelector(
-      "[data-testimonials-title]"
-    ).innerHTML;
-    modalText.innerHTML = this.querySelector(
-      "[data-testimonials-text]"
-    ).innerHTML;
+if (testimonialsItem) {
+  for (let i = 0; i < testimonialsItem.length; i++) {
+    testimonialsItem[i].addEventListener("click", function () {
+      if (modalImg && modalTitle && modalText) {
+        modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
+        modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
+        modalTitle.innerHTML = this.querySelector(
+          "[data-testimonials-title]"
+        ).innerHTML;
+        modalText.innerHTML = this.querySelector(
+          "[data-testimonials-text]"
+        ).innerHTML;
 
-    testimonialsModalFunc();
-  });
+        testimonialsModalFunc();
+      }
+    });
+  }
 }
 
 // add click event to modal close button
-modalCloseBtn.addEventListener("click", testimonialsModalFunc);
-overlay.addEventListener("click", testimonialsModalFunc);
+if (modalCloseBtn && overlay) {
+  modalCloseBtn.addEventListener("click", testimonialsModalFunc);
+  overlay.addEventListener("click", testimonialsModalFunc);
+}
 
 // custom select variables
 const select = document.querySelector("[data-select]");
@@ -85,68 +119,58 @@ const selectItems = document.querySelectorAll("[data-select-item]");
 const selectValue = document.querySelector("[data-selecct-value]");
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
-select.addEventListener("click", function () {
-  elementToggleFunc(this);
-});
+if (select) {
+  select.addEventListener("click", function () {
+    elementToggleFunc(this);
+  });
+}
 
 // add event in all select items
-for (let i = 0; i < selectItems.length; i++) {
-  selectItems[i].addEventListener("click", function () {
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    elementToggleFunc(select);
-    filterFunc(selectedValue);
-  });
+if (selectItems) {
+  for (let i = 0; i < selectItems.length; i++) {
+    selectItems[i].addEventListener("click", function () {
+      let selectedValue = this.innerText.toLowerCase();
+      selectValue.innerText = this.innerText;
+      elementToggleFunc(select);
+      filterFunc(selectedValue);
+    });
+  }
 }
 
 // filter variables
 const filterItems = document.querySelectorAll("[data-filter-item]");
 
 const filterFunc = function (selectedValue) {
-  for (let i = 0; i < filterItems.length; i++) {
-    if (selectedValue === "all") {
-      filterItems[i].classList.add("active");
-    } else if (selectedValue === filterItems[i].dataset.category) {
-      filterItems[i].classList.add("active");
-    } else {
-      filterItems[i].classList.remove("active");
+  if (filterItems) {
+    for (let i = 0; i < filterItems.length; i++) {
+      if (selectedValue === "all") {
+        filterItems[i].classList.add("active");
+      } else if (selectedValue === filterItems[i].dataset.category) {
+        filterItems[i].classList.add("active");
+      } else {
+        filterItems[i].classList.remove("active");
+      }
     }
   }
 };
 
 // add event in all filter button items for large screen
-let lastClickedBtn = filterBtn[0];
+if (filterBtn.length > 0) {
+  let lastClickedBtn = filterBtn[0];
 
-for (let i = 0; i < filterBtn.length; i++) {
-  filterBtn[i].addEventListener("click", function () {
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    filterFunc(selectedValue);
+  for (let i = 0; i < filterBtn.length; i++) {
+    filterBtn[i].addEventListener("click", function () {
+      let selectedValue = this.innerText.toLowerCase();
+      selectValue.innerText = this.innerText;
+      filterFunc(selectedValue);
 
-    lastClickedBtn.classList.remove("active");
-    this.classList.add("active");
-    lastClickedBtn = this;
-  });
+      lastClickedBtn.classList.remove("active");
+      this.classList.add("active");
+      lastClickedBtn = this;
+    });
+  }
 }
 
-// contact form variables
-const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
-const formBtn = document.querySelector("[data-form-btn]");
-
-// add event to all form input field
-for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
-    // check form validation
-    if (form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
-    }
-  });
-}
-
-// page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
 
@@ -165,3 +189,78 @@ for (let i = 0; i < navigationLinks.length; i++) {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadSidebar();
+  loadNavbar();
+  setInterval(updateTime, 1); // Update every millisecond for accuracy
+  updateTime();
+
+  const contactForm = document.querySelector("[data-form]");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const fullName = document.querySelector(
+        '[data-testid="test-contact-name"]'
+      );
+      const email = document.querySelector(
+        '[data-testid="test-contact-email"]'
+      );
+      const message = document.querySelector(
+        '[data-testid="test-contact-message"]'
+      );
+
+      const fullNameError = document.querySelector(
+        '[data-testid="test-contact-error-fullName"]'
+      );
+      const emailError = document.querySelector(
+        '[data-testid="test-contact-error-email"]'
+      );
+      const messageError = document.querySelector(
+        '[data-testid="test-contact-error-message"]'
+      );
+      const successMessage = document.querySelector(
+        '[data-testid="test-contact-success"]'
+      );
+
+      let isValid = true;
+
+      // Reset messages
+      successMessage.classList.remove("success");
+      fullNameError.textContent = "";
+      emailError.textContent = "";
+      messageError.textContent = "";
+      successMessage.textContent = "";
+
+      if (fullName.value.trim() === "") {
+        fullNameError.textContent = "Full name is required.";
+        fullNameError.classList.add("error");
+        isValid = false;
+      }
+
+      if (email.value.trim() === "") {
+        emailError.textContent = "Email is required.";
+        emailError.classList.add("error");
+        isValid = false;
+      } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.value)) {
+        emailError.textContent = "Please enter a valid email address.";
+        emailError.classList.add("error");
+        isValid = false;
+      }
+
+      if (message.value.trim().length < 10) {
+        messageError.classList.add("error");
+        messageError.textContent =
+          "Message must be at least 10 characters long.";
+        isValid = false;
+      }
+
+      if (isValid) {
+        successMessage.classList.add("success");
+        successMessage.textContent = "Your message has been sent successfully!";
+        contactForm.reset();
+      }
+    });
+  }
+});

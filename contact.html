@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main id="main-container">
+      <div id="sidebar-container"></div>
+      <div class="main-content">
+        <div id="navbar-container"></div>
+        <article class="contact active" data-page="contact">
+          <header>
+            <h2 class="h2 article-title">Contact</h2>
+          </header>
+
+          <section class="mapbox" data-mapbox>
+            <figure>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19849.36229395393!2d-0.1467501584655594!3d51.5073509175265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604ce3942eb5b%3A0x8915376c663554c2!2sLondon%2C%20UK!5e0!3m2!1sen!2sbd!4v1625331241996!5m2!1sen!2sbd"
+                width="400"
+                height="300"
+                loading="lazy"
+              ></iframe>
+            </figure>
+          </section>
+
+          <section class="contact-form">
+            <h3 class="h3 form-title">Contact Form</h3>
+
+            <form action="#" class="form" data-form>
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  name="fullname"
+                  class="form-input"
+                  placeholder="Full name"
+                  required
+                  data-testid="test-contact-name"
+                  data-form-input
+                />
+                <p
+                  class="error-message"
+                  data-testid="test-contact-error-fullName"
+                  aria-live="polite"
+                ></p>
+
+                <input
+                  type="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="Email address"
+                  required
+                  data-testid="test-contact-email"
+                  data-form-input
+                />
+                <p
+                  class="error-message"
+                  data-testid="test-contact-error-email"
+                  aria-live="polite"
+                ></p>
+              </div>
+
+              <textarea
+                name="message"
+                class="form-input"
+                placeholder="Your Message"
+                required
+                data-testid="test-contact-message"
+                data-form-input
+              ></textarea>
+              <p
+                class="error-message"
+                data-testid="test-contact-error-message"
+                aria-live="polite"
+              ></p>
+
+              <button
+                class="form-btn"
+                type="submit"
+                data-testid="test-contact-submit"
+                data-form-btn
+              >
+                <ion-icon name="paper-plane"></ion-icon>
+                <span>Send Message</span>
+              </button>
+            </form>
+
+            <p
+              class="success-message"
+              data-testid="test-contact-success"
+              aria-live="polite"
+            ></p>
+          </section>
+        </article>
+      </div>
+    </main>
+    <script src="assets/js/script.js"></script>
+
+    <!--
+    - ionicon link
+  -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
