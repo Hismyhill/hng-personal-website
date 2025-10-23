@@ -207,6 +207,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = document.querySelector(
         '[data-testid="test-contact-email"]'
       );
+      const subject = document.querySelector(
+        '[data-testid="test-contact-subject"]'
+      );
       const message = document.querySelector(
         '[data-testid="test-contact-message"]'
       );
@@ -216,6 +219,9 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       const emailError = document.querySelector(
         '[data-testid="test-contact-error-email"]'
+      );
+      const subjectError = document.querySelector(
+        '[data-testid="test-contact-error-subject"]'
       );
       const messageError = document.querySelector(
         '[data-testid="test-contact-error-message"]'
@@ -230,29 +236,42 @@ document.addEventListener("DOMContentLoaded", () => {
       successMessage.classList.remove("success");
       fullNameError.textContent = "";
       emailError.textContent = "";
+      subjectError.textContent = "";
       messageError.textContent = "";
       successMessage.textContent = "";
 
+      // Remove aria-describedby
+      fullName.removeAttribute("aria-describedby");
+      email.removeAttribute("aria-describedby");
+      subject.removeAttribute("aria-describedby");
+      message.removeAttribute("aria-describedby");
+
       if (fullName.value.trim() === "") {
         fullNameError.textContent = "Full name is required.";
-        fullNameError.classList.add("error");
+        fullName.setAttribute("aria-describedby", "test-contact-error-fullName");
         isValid = false;
       }
 
       if (email.value.trim() === "") {
         emailError.textContent = "Email is required.";
-        emailError.classList.add("error");
+        email.setAttribute("aria-describedby", "test-contact-error-email");
         isValid = false;
       } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.value)) {
         emailError.textContent = "Please enter a valid email address.";
-        emailError.classList.add("error");
+        email.setAttribute("aria-describedby", "test-contact-error-email");
+        isValid = false;
+      }
+
+      if (subject.value.trim() === "") {
+        subjectError.textContent = "Subject is required.";
+        subject.setAttribute("aria-describedby", "test-contact-error-subject");
         isValid = false;
       }
 
       if (message.value.trim().length < 10) {
-        messageError.classList.add("error");
         messageError.textContent =
           "Message must be at least 10 characters long.";
+        message.setAttribute("aria-describedby", "test-contact-error-message");
         isValid = false;
       }
 

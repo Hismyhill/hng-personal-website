@@ -38,50 +38,89 @@
 
             <form action="#" class="form" data-form>
               <div class="input-wrapper">
+                <div>
+                  <label for="fullname" class="form-label">Full Name</label>
+                  <input
+                    type="text"
+                    name="fullname"
+                    id="fullname"
+                    class="form-input"
+                    placeholder="Full name"
+                    required
+                    data-testid="test-contact-name"
+                    aria-describedby="test-contact-error-fullName"
+                    data-form-input
+                  />
+                  <p
+                    class="error-message"
+                    id="test-contact-error-fullName"
+                    data-testid="test-contact-error-fullName"
+                    aria-live="polite"
+                  ></p>
+                </div>
+
+                <div>
+                  <label for="email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    class="form-input"
+                    placeholder="Email address"
+                    required
+                    data-testid="test-contact-email"
+                    aria-describedby="test-contact-error-email"
+                    data-form-input
+                  />
+                  <p
+                    class="error-message"
+                    id="test-contact-error-email"
+                    data-testid="test-contact-error-email"
+                    aria-live="polite"
+                  ></p>
+                </div>
+              </div>
+
+              <div>
+                <label for="subject" class="form-label">Subject</label>
                 <input
                   type="text"
-                  name="fullname"
+                  name="subject"
+                  id="subject"
                   class="form-input"
-                  placeholder="Full name"
+                  placeholder="Subject"
                   required
-                  data-testid="test-contact-name"
+                  data-testid="test-contact-subject"
+                  aria-describedby="test-contact-error-subject"
                   data-form-input
                 />
                 <p
                   class="error-message"
-                  data-testid="test-contact-error-fullName"
-                  aria-live="polite"
-                ></p>
-
-                <input
-                  type="email"
-                  name="email"
-                  class="form-input"
-                  placeholder="Email address"
-                  required
-                  data-testid="test-contact-email"
-                  data-form-input
-                />
-                <p
-                  class="error-message"
-                  data-testid="test-contact-error-email"
+                  id="test-contact-error-subject"
+                  data-testid="test-contact-error-subject"
                   aria-live="polite"
                 ></p>
               </div>
 
-              <textarea
-                name="message"
-                class="form-input"
-                placeholder="Your Message"
-                required
-                data-testid="test-contact-message"
-                data-form-input
-              ></textarea>
-              <p
-                class="error-message"
-                data-testid="test-contact-error-message"
-                aria-live="polite"
-              ></p>
+              <div>
+                <label for="message" class="form-label">Message</label>
+                <textarea
+                  name="message"
+                  id="message"
+                  class="form-input"
+                  placeholder="Your Message"
+                  required
+                  data-testid="test-contact-message"
+                  aria-describedby="test-contact-error-message"
+                  data-form-input
+                ></textarea>
+                <p
+                  class="error-message"
+                  id="test-contact-error-message"
+                  data-testid="test-contact-error-message"
+                  aria-live="polite"
+                ></p>
+              </div>
 
               <button
                 class="form-btn"

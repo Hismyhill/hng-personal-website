@@ -843,6 +843,13 @@ main {
   margin-bottom: 20px;
 }
 
+.form-label {
+  display: block;
+  color: var(--white-2);
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
 .form-input {
   background: var(--eerie-black-1);
   color: var(--white-2);
